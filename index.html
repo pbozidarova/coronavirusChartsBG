@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid19 Dynamic Chart</title>
+
+    <script src="./scripts/cutomTooltip.js"></script>
+    <script src="./node_modules/moment/moment.js"></script>
+    <script src="./node_modules/chart.js/dist/Chart.js"></script>
+    <script src="./node_modules/chartjs-plugin-colorschemes/dist/chartjs-plugin-colorschemes.js"></script>
+
+    <script src="https://use.fontawesome.com/b862649337.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <h1>Динамична графика на разпространението на CoronaVirus в България</h1>
+
+            <div class='notify' id='notify'>
+                <p>Моля, изберете <span id="notif-dates">валидни дати</span>, <span id="notif-stat">вид статистика</span> и една или няколко от изброените<span id="notif-sec"> секции с данни</span></span>
+            </div>
+        </header>
+
+        <main>
+                
+            <section class="criteria-button-wrap">
+
+                <section class="criteria">
+                        <div class="datesClass">
+                            <label for="dateFrom" class="labelDates">От <input type="date" id='fromDate'></label>
+                            <label for="dateTo" class="labelDates">До <input type="date" id='toDate'></label>
+                        </div>
+                        
+                    <div id="resourceKeys">
+                            <input type="radio" id="general" name="resourceKey" value="general">
+                            <label for="general">Обща статистика</label>
+                            <div class='resourceLabels' id="resourceLabels-general">
+                                
+                            </div>
+                            <input type="radio" id="byRegion" name="resourceKey" value="byRegion">
+                            <label for="byRegion">По регион</label>
+                            <div class='resourceLabels' id="resourceLabels-byRegion">
+
+                            </div>
+                            <input type="radio" id="byAge" name="resourceKey" value="byAge">
+                            <label for="byAge">По възраст</label>
+                            <div class='resourceLabels' id="resourceLabels-byAge">
+
+                            </div>
+                    </div>
+                </section>
+                <button class="button-style" id="updateBtn">Обнови</button>
+            </section>
+
+            <section class="container">
+                <div>
+                    <canvas class="myChart-style" id="myChart"></canvas>       
+                </div>
+            </section>          
+            
+        </main>
+        
+        <footer>
+            <p>Данните се извличат на дневна база от <a href="https://data.egov.bg/covid-19?section=8&subsection=16&item=36" _taret='blank'>
+                Достъп до публични данни в Република България в отворен и машинночетим формат 
+                <span class="fontawesome"><i class="fa fa-link"></i></span>
+            </a></p>
+            <p>Designed & developed by Petya Kuzmanova &copy; 
+                <span class="fontawesome">
+                    <a href ="https://www.linkedin.com/in/petya-kuzmanova-75780257/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                    <a href="https://github.com/pbozidarova/coronavirusChartsBG"><i class="fa fa-github" aria-hidden="true"></i></p></a>
+                </span>
+        </footer>
+
+
+    </div>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
+    
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-firestore.js"></script>
+    
+    <script src="./scripts/firebase.js"></script>
+    <script src="./scripts/service.js"></script>
+    <script src="./scripts/init.js"></script>
+    <script src="./scripts/datasets.js"></script>
+    
+</body>
+</html>

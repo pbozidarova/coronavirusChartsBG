@@ -1,0 +1,112 @@
+@media only screen and (min-width: 900px){
+
+    html {
+        font: 16px/1.5 Verdana, sans-serif;
+    }
+    
+    .page-container {
+        min-height: 100vh;
+    }
+    main {
+        flex-direction: row;
+    }
+    .criteria-button-wrap {
+        height: 83vh;
+    }
+    header, footer {
+        font-size: 0.8em;
+    }
+
+    header {
+        height: 10vh;
+    }
+    
+    footer {
+        height: 7vh;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    footer {
+        font-size: 0.7em;
+        line-height: 1;
+    }
+}
+
+@media only screen and (max-width: 899px){
+
+    html {
+        font: 15px/1 Verdana, sans-serif;
+        }
+
+    .page-container {
+        min-height: 130vh;
+    }
+    main {
+        flex-direction: column;
+    }
+
+    .criteria-button-wrap {
+        display: flex;
+        flex-direction: row;
+        height: 80vh;
+
+    }
+    .criteria {
+        width: 100%;
+    }
+    
+    header, footer {
+        font-size: 0.8em;
+
+    }
+
+    header {
+        height: 10vh;
+    }
+    
+    footer {
+        height: 8vh;
+    }
+    
+}
+
+
+@media only screen and (max-width: 499px){
+
+    html {
+        font: 15px/1.5 Verdana, sans-serif;
+        }
+    
+
+    .page-container {
+        min-height: 160vh;
+    }
+    main {
+        flex-direction: column;
+    }
+
+    .criteria-button-wrap {
+        display: flex;
+        flex-direction: row;
+        height: 85vh;
+
+    }
+    .criteria {
+        width: 100%;
+    }
+    
+    header, footer {
+        font-size: 0.8em;
+
+    }
+
+    header {
+        height: 15vh;
+    }
+    
+    footer {
+        height: 15vh;
+    }
+    
+} 
