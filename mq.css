@@ -13,6 +13,9 @@
     .criteria-button-wrap {
         height: 83vh;
     }
+    .container {
+        width: 90%;
+    }
     header, footer {
         font-size: 0.8em;
     }
@@ -94,6 +97,10 @@
     }
     .criteria {
         width: 100%;
+    }
+
+    .myChart-style {
+        height: 90%;
     }
     
     header, footer {
