@@ -24,6 +24,7 @@ function singleDatasetObject(datasetLabel, databaseDataset) {
                 let keyDate = new Date(key);
                 let fromDateDF = new Date(fromDate)
                 let toDateDF = new Date(toDate)
+                
                 if(fromDateDF <= keyDate && toDateDF >= keyDate){
                     let yValue = label.includes('_100k') 
                                         ? calculate100k(obj[key][obj.labels.indexOf(label.replace('_100k',''))], label)

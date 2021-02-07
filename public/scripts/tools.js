@@ -92,3 +92,4 @@ function presetInitialFromDate(){
     
     return new Date(monthDiff).toISOString().split('T')[0];
 }
+

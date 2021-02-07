@@ -40,8 +40,8 @@ const apiService = {
         
         let res = await fetch(proxyUrl + (BASE_URL + apiPath.getResourceData), openDataObj(value))
                     .then( response => response.json() )
-                    .then(jsonResponse => jsonResponse['data'])
-                    .catch(error => error)
+                    .then(jsonResponse => jsonResponse['data'] )
+                    .catch(error =>  false)
                              
         return res;
     }
@@ -94,14 +94,17 @@ const storeService = {
             await apiService.fetchFromOpenDataGov(keyResourceUri)
                         .then(bodyRequestForUpload => {
                             //Save the labels
-                            storeService.uploadObjRowInDatabase(keyResourceUri, { 'labels': [...bodyRequestForUpload.shift().splice(1)]});
-                            //SaveData
-                            bodyRequestForUpload.forEach( row => {
-                                storeService.uploadObjRowInDatabase(keyResourceUri, objFromArray(row));
-                            })
+                            console.log(bodyRequestForUpload);
                             
-            });
-                    
+                            if(bodyRequestForUpload){    
+                                storeService.uploadObjRowInDatabase(keyResourceUri, { 'labels': [...bodyRequestForUpload.shift().splice(1)]});
+                                //SaveData
+                                bodyRequestForUpload.forEach( row => {
+                                    storeService.uploadObjRowInDatabase(keyResourceUri, objFromArray(row));
+                                });
+                            }
+                        })
+                        // .catch(error => console.log(error))                    
         }
 
         //  Object.keys(resourceURIRepo).forEach(keyResourceUri => {
@@ -149,7 +152,7 @@ const storeService = {
 
 const dynamicChartsService = {
     async buildDatasets(resourceKey, requiredLabels, fromDate, toDate){
-        //resourceKey = byAge, byRegion, general
+        //resourceKey = byAge, byRegion, general, byTest
         let resourceObj = await storeService.loadData(resourceKey);
         
         let requiredLabelsValues = []
@@ -269,6 +272,9 @@ const dynamicChartsService = {
         })
         
         //Populate each label as input type checkbox
+        if(!resourceObj.labels){
+            return;
+        }
         resourceObj.labels.forEach(label => {
             if( isRegionActulalLabel(label) ){
                 return;

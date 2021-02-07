@@ -19,18 +19,13 @@ const htmlSelectors = {
     notifStat: () => document.getElementById('notif-stat'),
     notifSec: () => document.getElementById('notif-sec'),
 }
-
-//Draw the chart
-let chartVar = dynamicChartsService.chart();
-
 //Preset the today value in the today field
 htmlSelectors.toDate().value = presetInitialToDate();
 htmlSelectors.fromDate().value = presetInitialFromDate();
 
+//Draw the chart
+let chartVar = dynamicChartsService.chart();
 
-const notifications = {
-    fetchFromOpenDBError: "Данните от https://data.egov.bg/ в момента са недостъпни."
-}
 
 //BuildChartOnLoad
 htmlSelectors.updateBtn().addEventListener('click', async () => {
@@ -59,7 +54,7 @@ htmlSelectors.updateBtn().addEventListener('click', async () => {
     htmlSelectors.notifSec().style.color = "white";
 
     //NEED TO UNCOMMENT!!! TODO!!!
-    //await storeService.initiateLocalDataUpdateIfNeeded();
+    await storeService.initiateLocalDataUpdateIfNeeded();
     await dynamicChartsService.buildChart(htmlSelectors.resourceKey().value, htmlSelectors.requiredLabels(), htmlSelectors.fromDate().value, htmlSelectors.toDate().value)
     //htmlSelectors.myChart().update();
 });
@@ -69,3 +64,8 @@ htmlSelectors.updateBtn().addEventListener('click', async () => {
 htmlSelectors.resourceKeysAll().forEach(inputEl => {
     inputEl.addEventListener('change', (e) => dynamicChartsService.buildLabelElements(e));
 });
+
+
+const notifications = {
+    fetchFromOpenDBError: "Данните от https://data.egov.bg/ в момента са недостъпни."
+}
